@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block body %}
+{% load crispy_forms_tags %}
+
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <h3>Daxil ol</h3>
+    <hr>
+    <form method = "post">
+        {% csrf_token %}
+        {{form|crispy}}
+        <br>
+        <div class="row">
+        <div class="col-8">
+        <button type="submit" class = "btn btn-primary">Daxil ol</button>
+        </div>
+        <div class="col-4">
+        <p style="text-align:center">
+        <a href="{% url 'user:register' %}">Qeydiyyatdan kec</a>
+        </p>
+        </div>
+        </div>
+    </form>
+  </div>
+</div>
+
+{% endblock body %}

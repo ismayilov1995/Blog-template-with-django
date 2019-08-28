@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block css_place %}
+<link rel="stylesheet" href="{% static 'css/style_tables.css' %}">
+{% endblock  %}
+{% block body %}
+<h1 class="display-4">Meqalelerim</h1>
+<hr>
+<p>
+Xoshgeldin aq <small>{{request.user.username}}</small>
+</p>
+<br>
+
+{% if articles %}
+<table class="table table-hover">
+<caption>Meqalelerinin siyahisi</caption>
+  <thead>
+    <tr class="bg-primary" align="center">
+      <th scope="col">id</th>
+      <th scope="col">Bashliq</th>
+      <th scope="col">Tarix</th>
+      <th scope="col">Duzelish et</th>
+      <th scope="col">Sil</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for article in articles %}
+    <tr  align="center">
+      <td>{{article.id}}</th>
+      <td><a href="/articles/article/{{article.id}}">{{article.title}}<a/></td>
+      <td><a href="/articles/article/{{article.id}}">{{article.created_date}}</a></td>
+      <td><a class="btn btn-primary btn-sm" href="/articles/update/{{article.id}}">Duzelish et</a></td>
+      <td><a class="btn btn-danger btn-sm" href="/articles/delete/{{article.id}}">Sil</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+<br>
+<p align="right">
+<a class = "btn btn-primary" href = "/articles/addarticle">Meqale elave et</a>
+</p>
+{% else %}
+<div class="alert alert-danger" align="center">
+Hazirda gosterilecek meqaleniz yoxdur.
+</div>
+{% endif %}
+{% endblock body %}
